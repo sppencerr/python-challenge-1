@@ -135,18 +135,33 @@ while place_order:
 
 
                     # Ask the customer for the quantity of the menu item
+                    quantity = input(f"How many {item['Item name']} would you like?")
 
 
                     # Check if the quantity is a number, default to 1 if not
+                    if not quantity.isdigit():
+                        quantity = 1
+                    else:
+                        quantity = int(quantity)
 
 
                     # Add the item name, price, and quantity to the order list
+                    order.append({
+                        "Item name": item["Item name"],
+                        "Price": item["Price"],
+                        "Quantity": quantity
+                    })
+                    print(f"Added {quantity} {item['Item name']} to your order.")
+                else:
 
 
                     # Tell the customer that their input isn't valid
+                    print("Invalid item selection.")
+            
 
-
+            else:
                 # Tell the customer they didn't select a menu option
+                print("Please enter a valid item number.")
 
         else:
             # Tell the customer they didn't select a menu option
@@ -154,30 +169,35 @@ while place_order:
     else:
         # Tell the customer they didn't select a number
         print("You didn't select a number.")
-
+# 5. Check the customer's input
     while True:
         # Ask the customer if they would like to order anything else
         keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o ")
-
-        # 5. Check the customer's input
+        if keep_ordering == "y":
 
                 # Keep ordering
+            place_order = True
 
                 # Exit the keep ordering question loop
+            break
+        elif keep_ordering == "n":
 
                 # Complete the order
+            place_order = False
 
                 # Since the customer decided to stop ordering, thank them for
                 # their order
+            print("Thank you for your order.")
 
                 # Exit the keep ordering question loop
-
-
+            break
+        else:
                 # Tell the customer to try again
+                print("Invalid input. Please type 'Y' or 'N'.")
 
 
 # Print out the customer's order
-print("This is what we are preparing for you.\n")
+print("\nThis is what we are preparing for you.\n")
 
 # Uncomment the following line to check the structure of the order
 #print(order)
