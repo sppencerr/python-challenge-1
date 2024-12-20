@@ -124,8 +124,14 @@ while place_order:
 
 
                 # 4. Check if the menu selection is in the menu items
+                menu_selection = input("Type item number: ")
+
+                if menu_selection.isdigit():
+                    menu_selection = int(menu_selection)
+                    if menu_selection in menu_items.keys():
 
                     # Store the item name as a variable
+                        item = menu_items[menu_selection]
 
 
                     # Ask the customer for the quantity of the menu item
