@@ -172,8 +172,8 @@ while place_order:
 # 5. Check the customer's input
     while True:
         # Ask the customer if they would like to order anything else
-        keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o ")
-        if keep_ordering == "y":
+        keep_ordering = input("Would you like to keep ordering? (y)es or (n)o ")
+        if keep_ordering == "n":
 
                 # Keep ordering
             place_order = True
@@ -206,19 +206,27 @@ print("Item name                 | Price  | Quantity")
 print("--------------------------|--------|----------")
 
 # 6. Loop through the items in the customer's order
+for item in order:
 
     # 7. Store the dictionary items as variables
+    item_name = item["Item name"]
+    price = item["Price"]
+    quantity = item["Quantity"]
 
 
     # 8. Calculate the number of spaces for formatted printing
+    name_spaces = " " * (24 - len(item_name))
+    price_spaces = " " * (6 - len(f"${price:.2f}"))
 
 
     # 9. Create space strings
 
-
     # 10. Print the item name, price, and quantity
+    print(f"{item_name}{item_spaces} | ${price:.2f}{price_spaces} | {quantity}")
 
 
 # 11. Calculate the cost of the order using list comprehension
 # Multiply the price by quantity for each item in the order list, then sum()
 # and print the prices.
+total_price = sum([item["Price"] * item["Quantity"] for item in order])
+print("\nTotal: ${:2f}".format(total_price))
